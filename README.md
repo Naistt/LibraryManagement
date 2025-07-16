@@ -20,11 +20,12 @@ Sistema Full Stack para gerenciamento de **Gêneros**, **Autores** e **Livros**.
 ### Backend (.NET 6 + PostgreSQL)
 
 - ASP.NET Core Web API
+- Versionamento da API
 - Entity Framework Core (ORM)
 - PostgreSQL
 - Migrations
 - Swagger (documentação)
-- DTOs, ViewModels e Respostas padronizadas (BaseResponse)
+- DTOs, ViewModels, Entities e Respostas padronizadas (BaseResponse)
 - Testes de unidade com xUnit, Moq e FluentAssertions
 - Suporte a múltiplos environments via `appsettings.*.json`
 
@@ -34,9 +35,11 @@ Sistema Full Stack para gerenciamento de **Gêneros**, **Autores** e **Livros**.
 - PrimeNG para UI/UX
 - Reactive Forms
 - Gerenciamento de estado com **Services e Observables**
-- Rotas
+- Rotas, Models, Serviços
 - Interceptors para tratamento de requisições
 - Estrutura limpa e escalável
+- Suporte a múltiplos environments
+- Testes unitários com Karma/Jasmine
 
 ## 🚀 Como Executar o Projeto
 
