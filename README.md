@@ -83,8 +83,12 @@ cd frontend
 npm install
 npm start
 ```
+Ou vá até a pasta raiz do Angular e execute:
+```bash
+ng s -o
+``` 
 
-A aplicação estará disponível em:
+A aplicação estará disponível por padrão em:
 ```
 http://localhost:4200
 ```
@@ -102,8 +106,8 @@ dotnet test
 
 ```bash
 library-management/
-├── src/
-│   ├── Library.Api/                  # API principal
+├── backend/
+│   ├── Library.Api/                 # API principal
 │   ├── Library.Application/         # Regras de negócio (Services, DTOs, ViewModels)
 │   ├── Library.Domain/              # Entidades de domínio
 │   ├── Library.Infrastructure/      # Banco de dados, Migrations, Repositórios
@@ -144,6 +148,12 @@ library-management/
 
 ### Entrega
 - [x] Projeto hospedado no GitHub com instruções claras
+
+### Possíveis Melhorias
+- [ ] Gerenciamento de estado mais robusto com NgRx
+- [ ] Aumento na quantidade de Testes unitários
+- [ ] Docker & Kubernetes
+- [ ] Cloud Deploy
 
 ## 📫 Contato
 
