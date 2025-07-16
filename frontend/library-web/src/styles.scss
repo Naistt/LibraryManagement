@@ -1,0 +1,61 @@
+// Import modern fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+// Global font settings
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  :host ::ng-deep .custom-menubar {
+    padding: 0.5rem 1rem;
+
+    .brand-container {
+      span {
+        font-size: 1.1rem;
+      }
+    }
+
+    .p-menubar-root-list {
+      margin-right: 0.5rem;
+    }
+
+    .p-menuitem-link {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .theme-selector {
+      .p-button {
+        padding: 0.4rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  :host ::ng-deep .custom-menubar {
+    .brand-container {
+      span {
+        font-size: 1rem;
+      }
+    }
+
+    .p-menuitem-link {
+      padding: 0.35rem 0.6rem;
+    }
+  }
+}
+
+html {
+  background: #f5f6fa; // cor clara padrão
+  transition: background 0.3s;
+}
+html.my-app-dark {
+  background: #181818; // cor escura para o modo dark
+}
+
+body {
+  background: transparent;
+}

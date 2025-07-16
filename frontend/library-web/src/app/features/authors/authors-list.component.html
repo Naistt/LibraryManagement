@@ -1,0 +1,78 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="mb-2 flex justify-content-end">
+  <button pButton type="button" label="Novo Autor" icon="pi pi-plus" (click)="openNew()"></button>
+</div>
+
+<p-table
+  [value]="authors"
+  [loading]="loading"
+  [paginator]="true"
+  [rows]="10"
+  responsiveLayout="scroll"
+  emptyMessage="Nenhum autor encontrado"
+  [rowsPerPageOptions]="[10, 20, 50]"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nome</th>
+      <th>Biografia</th>
+      <th>Livros</th>
+      <th style="width: 120px">Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-author>
+    <tr>
+      <td>{{ author.name }}</td>
+      <td>{{ author.bio }}</td>
+      <td>
+        <ng-container *ngIf="author.bookTitles?.length; else noBooks">
+          <ul class="list-none m-0 p-0">
+            <li *ngFor="let book of author.bookTitles" class="mb-1 text-sm">{{ book }}</li>
+          </ul>
+        </ng-container>
+        <ng-template #noBooks>
+          <span>Nenhum livro</span>
+        </ng-template>
+      </td>
+      <td>
+        <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-info mr-1" (click)="editAuthor(author)"></button>
+        <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirmDelete(author)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- Diálogo de Criação/Edição -->
+<p-dialog header="{{ editing ? 'Editar Autor' : 'Novo Autor' }}"
+    [(visible)]="authorDialog"
+    [modal]="true"
+    [responsive]="true"
+    [style]="{ width: '400px' }"
+    [closable]="false"
+    [draggable]="false"
+    [resizable]="false"
+  >
+  <br>
+  <form [formGroup]="authorForm" (ngSubmit)="saveAuthor()">
+    <div class="p-fluid">
+      <div class="field">
+        <p-floatlabel variant="on">
+          <input pInputText id="name" formControlName="name" autocomplete="off" />
+          <label for="name">Nome</label>
+        </p-floatlabel>
+      </div>
+      <div class="field">
+        <p-floatlabel variant="on">
+          <textarea pTextarea id="bio" formControlName="bio" rows="5" cols="30" style="resize: none" class="h-full"></textarea>
+          <label for="bio">Biografia</label>
+        </p-floatlabel>
+      </div>
+    </div>
+    <div class="flex justify-content-end gap-2 mt-3">
+      <button pButton label="Cancelar" icon="pi pi-times" (click)="authorDialog = false" type="button" class="p-button-text"></button>
+      <button pButton label="Salvar" icon="pi pi-check" type="submit" [disabled]="authorForm.invalid"></button>
+    </div>
+  </form>
+</p-dialog>

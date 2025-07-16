@@ -1,0 +1,15 @@
+/backend/LibraryManagementApi/bin
+/backend/LibraryManagementApi/obj
+/backend/.vs
+/backend/LibraryManagementApi/.vs
+/backend/Library.Api/.vs
+/backend/Library.Api/bin
+/backend/Library.Api/obj
+/backend/Library.Application/bin
+/backend/Library.Application/obj
+/backend/Library.Domain/bin
+/backend/Library.Domain/obj
+/backend/Library.Infrastructure/bin
+/backend/Library.Infrastructure/obj
+/backend/Library.Tests/bin
+/backend/Library.Tests/obj

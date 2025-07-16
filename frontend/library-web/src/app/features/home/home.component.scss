@@ -1,0 +1,247 @@
+.home-container {
+  padding: 2rem;
+  min-height: 100vh;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 1s ease-out;
+}
+
+.welcome-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.card-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.card-wrapper:nth-child(1) { animation-delay: 0.2s; }
+.card-wrapper:nth-child(2) { animation-delay: 0.4s; }
+.card-wrapper:nth-child(3) { animation-delay: 0.6s; }
+
+.home-card {
+  height: 100%;
+  transition: all 0.3s ease;
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-10px);
+  }
+}
+
+.card-header {
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.card-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.card-wrapper:hover .card-icon {
+  transform: scale(1.1);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.card-description {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.card-footer {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid;
+}
+
+// Cores específicas para cada card
+.primary-card {
+  .card-header {
+    background: #007bff;
+  }
+  
+  .card-icon {
+    color: white;
+  }
+}
+
+.success-card {
+  .card-header {
+    background: #28a745;
+  }
+  
+  .card-icon {
+    color: white;
+  }
+}
+
+.warning-card {
+  .card-header {
+    background: #ffc107;
+  }
+  
+  .card-icon {
+    color: white;
+  }
+}
+
+// Suporte para tema escuro
+html.my-app-dark {
+  .welcome-section {
+    color: #ffffff;
+  }
+  
+  .welcome-title {
+    color: #ffffff;
+  }
+  
+  .welcome-subtitle {
+    color: #cccccc;
+  }
+  
+  .home-card {
+    background: #2d2d2d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    
+    &:hover {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+  }
+  
+  .card-title {
+    color: #ffffff;
+  }
+  
+  .card-subtitle {
+    color: #cccccc;
+  }
+  
+  .card-description {
+    color: #cccccc;
+  }
+  
+  .card-footer {
+    border-top-color: #444444;
+  }
+}
+
+// Animações
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .home-container {
+    padding: 1rem;
+  }
+  
+  .welcome-title {
+    font-size: 2rem;
+  }
+  
+  .welcome-subtitle {
+    font-size: 1rem;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .card-wrapper {
+    animation-delay: 0.1s !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .card-icon {
+    font-size: 2.5rem;
+  }
+}

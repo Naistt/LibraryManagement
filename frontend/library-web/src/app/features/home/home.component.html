@@ -1,0 +1,47 @@
+<div class="home-container">
+  <div class="welcome-section">
+    <h1 class="welcome-title">Sistema de Gerenciamento de Biblioteca</h1>
+    <p class="welcome-subtitle">Bem-vindo ao seu sistema completo de gerenciamento de livros, autores e gêneros</p>
+  </div>
+
+  <div class="cards-grid">
+    <div 
+      *ngFor="let card of cards; let i = index" 
+      class="card-wrapper"
+      [@fadeInUp]
+      [style.animation-delay]="(i * 0.2) + 's'"
+    >
+      <p-card 
+        [styleClass]="'home-card ' + card.color + '-card'"
+        [style]="{ 'cursor': 'pointer' }"
+        (click)="navigateTo(card.route)"
+      >
+        <ng-template pTemplate="header">
+          <div class="card-header">
+            <i [class]="card.icon + ' card-icon ' + card.color + '-icon'"></i>
+          </div>
+        </ng-template>
+        
+        <ng-template pTemplate="title">
+          <h2 class="card-title">{{ card.title }}</h2>
+          <p class="card-subtitle">{{ card.subtitle }}</p>
+        </ng-template>
+        
+        <ng-template pTemplate="content">
+          <p class="card-description">{{ card.description }}</p>
+        </ng-template>
+        
+        <ng-template pTemplate="footer">
+          <div class="card-footer">
+            <p-button 
+              [label]="'Acessar ' + card.title" 
+              [icon]="'pi pi-arrow-right'"
+              [styleClass]="'p-button-' + card.color"
+              (onClick)="navigateTo(card.route)"
+            ></p-button>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="mb-2 flex justify-content-end">
+  <button pButton type="button" label="Novo Gênero" icon="pi pi-plus" (click)="openNew()"></button>
+</div>
+
+<p-table
+  [value]="genres"
+  [loading]="loading"
+  [paginator]="true"
+  [rows]="10"
+  responsiveLayout="scroll"
+  emptyMessage="Nenhum gênero encontrado"
+  [rowsPerPageOptions]="[10, 20, 50]"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Livros</th>
+      <th style="width: 120px">Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-genre>
+    <tr>
+      <td>{{ genre.name }}</td>
+      <td>{{ genre.description }}</td>
+      <td>
+        <ng-container *ngIf="genre.bookTitles?.length; else noBooks">
+          <ul class="list-none m-0 p-0">
+            <li *ngFor="let book of genre.bookTitles" class="mb-1 text-sm">{{ book }}</li>
+          </ul>
+        </ng-container>
+        <ng-template #noBooks>
+          <span>Nenhum livro</span>
+        </ng-template>
+      </td>      
+      <td>
+        <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-info mr-1" (click)="editGenre(genre)"></button>
+        <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirmDelete(genre)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- Diálogo de Criação/Edição -->
+<p-dialog header="{{ editing ? 'Editar Gênero' : 'Novo Gênero' }}"
+    [(visible)]="genreDialog"
+    [modal]="true"
+    [responsive]="true"
+    [style]="{ width: '400px' }"
+    [closable]="false"
+    [draggable]="false"
+    [resizable]="false"
+  >
+  <br>
+  <form [formGroup]="genreForm" (ngSubmit)="saveGenre()">
+    <div class="p-fluid">
+      <div class="field">
+        <p-floatlabel variant="on">
+          <input pInputText id="name" formControlName="name" autocomplete="off" />
+          <label for="name">Nome</label>
+        </p-floatlabel>
+      </div>
+      <div class="field">
+        <p-floatlabel variant="on">
+          <textarea pTextarea id="description" formControlName="description" rows="5" cols="30" style="resize: none" class="h-full"></textarea>
+          <label for="description">Descrição</label>
+        </p-floatlabel>
+      </div>
+    </div>
+    <div class="flex justify-content-end gap-2 mt-3">
+      <button pButton label="Cancelar" icon="pi pi-times" (click)="genreDialog = false" type="button" class="p-button-text"></button>
+      <button pButton label="Salvar" icon="pi pi-check" type="submit" [disabled]="genreForm.invalid"></button>
+    </div>
+  </form>
+</p-dialog>
